@@ -78,6 +78,7 @@ OpsGuardian bridges the gap between AI autonomy and infrastructure security by e
 
 Logic Flow (Mermaid)
 
+```mermaid
 flowchart LR
     A[🧑 User Chat UI] -->|Natural Language Command| B[🤖 AI Layer (LLM)]
     B --> C[🧠 Agent Layer]
@@ -96,6 +97,7 @@ flowchart LR
     H --> E3
     H --> I[📊 Response + Status]
     I --> J[💬 Chat UI + Flow Visualization]
+```
 
 ✅ Features
 1. LLM-Based Decision Making
