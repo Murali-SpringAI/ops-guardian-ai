@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: copilot-backend
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-frvjdwj3fq0gwfb7.us.auth0.com/
+
+
+server:
+  port: 8080
+
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+

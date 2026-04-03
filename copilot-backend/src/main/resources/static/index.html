@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpsGuardian AI Copilot</title>
+
+    <style>
+        .flow-container {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: #f1f3f5;
+            border: 1px solid #ddd;
+            font-size: 13px;
+            min-width: 120px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step.active {
+            background: #4caf50;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .flow-step.blocked {
+            background: #f44336;
+            color: white;
+        }
+
+        .flow-step.warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .flow-arrow {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body style="font-family: Arial; margin: 20px;">
+
+<h2>🚀 OpsGuardian AI Copilot</h2>
+
+<div style="
+    background:#fff3cd;
+    padding:10px;
+    border:1px solid #ffeeba;
+    border-radius:6px;
+    margin-bottom:10px;
+">
+    🔒 <b>Restricted AI Mode</b><br>
+    AI cannot directly access external systems.<br>
+    All actions are routed through OpsGuardian Agent (Auth0 + RBAC + Policies)
+</div>
+
+<!-- 🧠 Chat Window -->
+<div id="chat" style="
+    border:1px solid #ccc;
+    padding:10px;
+    height:300px;
+    overflow-y:auto;
+    margin-bottom:10px;
+    background:#fafafa;
+"></div>
+
+<!-- 🔍 Technical Flow -->
+<div id="flow" class="flow-container"></div>
+
+<!-- ✍️ Input -->
+<input type="text" id="command" placeholder="Enter command..." size="50"/>
+<button onclick="sendCommand()">Execute</button>
+
+<!-- ⚠️ Confirmation -->
+<div id="confirmSection" style="display:none; margin-top:10px;">
+    <button onclick="confirmAction()">⚠️ Confirm Action</button>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
