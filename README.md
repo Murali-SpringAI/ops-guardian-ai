@@ -98,84 +98,227 @@ flowchart LR
     H --> I["📊 Response + Status"]
     I --> J["💬 Chat UI + Flow Visualization"]
 ```
+## ✅ Features Implemented
 
-✅ Features
-1. LLM-Based Decision Making
+### 🤖 LLM Decision Engine
+- Converts natural language into structured actions
 
-Converts ambiguous commands into structured, actionable JSON payloads.
-
+**Example:**
+```json
 {
   "action": "RESTART_SERVICE",
   "target": "payment-service",
   "reason": "Service instability detected"
 }
+```
 
-2. Secure Execution & Auth0
+---
 
-JWT Validation: Validates issuer and audience on every request.
+### 🔐 Secure Execution
+- Auth0 JWT validation
+- Role-Based Access Control (RBAC)
+- Permission-based execution
 
-RBAC: Maps Auth0 roles to specific DevOps actions (e.g., admin can restart, viewer only sees logs).
+---
 
-3. Safety Guardrails
+### 🛡️ Safety Guardrails
+- Risk detection before execution
+- Mandatory confirmation for critical actions
 
-High-risk actions like RESTART_SERVICE or SCALE_SERVICE trigger a Confirmation Layer, requiring a physical click from an authorized user before the backend proceeds.
+**Flow:**  
+LLM → Risk Check → Confirm → Execute
 
-4. Transparent Reasoning
+---
 
-The UI provides a live "Internal Thought" feed:
+### 💬 Chat UI
+- Natural language input
+- AI reasoning displayed step-by-step
+- Confirmation buttons
+- Flow visualization
 
+---
+
+### 🔗 Integrations
+- GitHub (issues, repositories)
+- DevOps simulation APIs
+- Logs & metrics
+
+---
+
+### 🧠 Transparent AI Reasoning
+```
 🧠 Understanding request...
-
+📊 Analyzing intent...
+⚙️ Deciding action...
+🔐 Validating JWT...
 🛡️ Checking permissions...
-
 ⚠️ Confirmation required
-
 🚀 Executing...
+✅ Done
+```
 
-✅ Completed!
+---
 
-🛠️ Setup Instructions
-Backend (Java / Spring Boot)
+## ⚡ Demo Script
 
-Clone the repo:
+Try these commands:
+- Restart payment service
+- Show logs for orders
+- Scale checkout service to 3
+- Create GitHub issue
+
+---
+
+## 🛠️ Setup
+
+### Backend
+```bash
 git clone <repo-url>
 cd copilot_backend
+./mvnw spring-boot:run
+```
 
-Configure Auth0 in src/main/resources/application.yml:
+OpsGuardian requires minimal configuration for **Auth0 authentication** and **LLM integration**.
 
+---
+
+### 🔐 Auth0 Configuration
+
+```yaml
 spring:
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: <YOUR_AUTH0_DOMAIN>
+          issuer-uri: https://dev-frvjdwj3fq0gwfb7.us.auth0.com/
+```
 
-Run the App:
-./mvnw spring-boot:run
+- **issuer-uri**: Your Auth0 domain URL
+- Used for validating incoming JWT tokens
+- Ensures only authenticated users can access the API
 
-Frontend
+---
 
-The UI is served statically by Spring Boot at http://localhost:8080.
+### 🔑 Auth0 Machine-to-Machine (M2M)
 
-Ensure app.js contains a valid JWT for local testing.
+```yaml
+auth0:
+  domain: <DOMAIN>
+  m2m:
+    client-id: <CLIENT_ID>
+    client-secret: <CLIENT_SECRET>
+```
 
-⚙️ Available Commands
-"Restart payment service" → RESTART_SERVICE
+- **domain**: Your Auth0 tenant domain
+- **client-id / client-secret**: Credentials for backend-to-backend communication
+- Used by the agent to securely call external APIs on behalf of the user
 
-"Scale checkout service to 3 instances" → SCALE_SERVICE
+> ⚠️ Do NOT commit real credentials to GitHub. Use environment variables instead.
 
-"Show logs for orders service" → FETCH_LOGS
+---
 
-"Create GitHub issue in checkout-service" → CREATE_GITHUB_ISSUE
+### 🤖 LLM Configuration
 
-📝 Roadmap
-[ ] Streaming Responses: Real-time AI typing effect via SSE.
+```yaml
+llm:
+  api:
+    key: <API_KEY>
+  model: gpt-4o-mini
+```
 
-[ ] Session Memory: Context-aware follow-up commands.
+- **api.key**: Your LLM provider API key
+- **model**: LLM used for intent parsing and decision-making
 
-[ ] Cloud Native: Deep integration with AWS CloudWatch and Lambda.
+---
 
-[ ] Enhanced UI: Dark mode and persistent chat history.
+### 🌐 Server Configuration
 
-📦 License
-Distributed under the MIT License. See LICENSE for more information.
+```yaml
+server:
+  port: 8080
+```
+
+- Defines the port where the backend runs
+- Default: `http://localhost:8080`
+
+---
+
+### 📝 Logging (Debug Mode)
+
+```yaml
+logging:
+  level:
+    org.springframework.security: DEBUG
+```
+
+- Enables detailed logs for authentication and authorization
+- Useful for debugging JWT validation and RBAC issues
+
+---
+
+### Frontend
+- Open: `src/main/resources/static/index.html`
+- Ensure JWT is set in `app.js`
+
+---
+
+## ⚙️ Commands
+
+| Input                          | Action                  |
+|--------------------------------|-------------------------|
+| Restart payment service        | RESTART_SERVICE         |
+| Scale checkout service         | SCALE_SERVICE           |
+| Show logs                      | FETCH_LOGS              |
+| Create GitHub issue            | CREATE_GITHUB_ISSUE     |
+
+---
+
+## 🛡️ Policies
+- ❌ No production restarts
+- ⚠️ Scaling requires confirmation
+- 🔐 RBAC enforced
+
+---
+
+## 📝 Roadmap
+- Streaming AI responses
+- Session memory
+- AWS integrations
+- Better UI (timestamps, history)
+
+---
+
+## 👀 Hackathon Highlights
+- 🔥 AI agent with real guardrails
+- 🔐 Security-first design (Auth0 + RBAC)
+- 🧠 Transparent AI reasoning
+- ⚙️ Extensible architecture
+
+---
+
+## 🎯 Vision
+A production-ready AI DevOps agent that:
+- Understands natural language
+- Makes safe decisions
+- Executes securely
+- Explains everything
+
+---
+
+## 📂 Project Structure
+```
+copilot_backend/
+├─ service/AgentService.java
+├─ llm/LlmService.java
+├─ model/AgentDecision.java
+├─ model/AgentResponse.java
+│
+└─ static/
+   ├─ index.html
+   ├─ app.js
+```
+
+---
+
+## 📦 License
+MIT License
