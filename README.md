@@ -75,28 +75,28 @@ OpsGuardian bridges the gap between AI autonomy and infrastructure security by e
               │  UI   │
               │ Response │
               └───────┘
-
+```
 Logic Flow (Mermaid)
 
 ```mermaid
 flowchart LR
-    A[🧑 User Chat UI] -->|Natural Language Command| B[🤖 AI Layer (LLM)]
-    B --> C[🧠 Agent Layer]
-    C --> C1[Planner]
-    C --> C2[Executor]
-    C1 -->|Task Plan| C2
-    C2 -->|Tool Selection| D[🧰 Tool Registry]
-    D --> E1[GitHub Tool]
-    D --> E2[Logs Tool]
-    D --> E3[DevOps Tool]
-    C2 --> F[🛡️ Policy Engine]
-    F -->|Allow / Warn / Confirm| G[🔐 Auth0 RBAC]
-    G --> H[⚙️ Execution Layer]
+    A["🧑 User Chat UI"] -->|Natural Language Command| B["🤖 AI Layer (LLM)"]
+    B --> C["🧠 Agent Layer"]
+    C --> C1["Planner"]
+    C --> C2["Executor"]
+    C1 -->|"Task Plan"| C2
+    C2 -->|"Tool Selection"| D["🧰 Tool Registry"]
+    D --> E1["GitHub Tool"]
+    D --> E2["Logs Tool"]
+    D --> E3["DevOps Tool"]
+    C2 --> F["🛡️ Policy Engine"]
+    F -->|"Allow / Warn / Confirm"| G["🔐 Auth0 RBAC"]
+    G --> H["⚙️ Execution Layer"]
     H --> E1
     H --> E2
     H --> E3
-    H --> I[📊 Response + Status]
-    I --> J[💬 Chat UI + Flow Visualization]
+    H --> I["📊 Response + Status"]
+    I --> J["💬 Chat UI + Flow Visualization"]
 ```
 
 ✅ Features
