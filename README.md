@@ -20,7 +20,7 @@ OpsGuardian bridges the gap between AI autonomy and infrastructure security by e
 
 ## 📺 Demo
 
-[![OpsGuardian Demo](static/demo.gif)](https://youtu.be/mghuXwp-gAs)
+[![OpsGuardian Demo](./static/demo.gif)](https://youtu.be/mghuXwp-gAs)
 
 
 **Example Flow:**
