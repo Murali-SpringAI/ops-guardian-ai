@@ -8,7 +8,7 @@ spring:
           issuer-uri: https://dev-frvjdwj3fq0gwfb7.us.auth0.com/
 
 auth0:
-  domain: <DMAIN>>
+  domain: <DOMAIN>>
   m2m:
     client-id: <CLIENTID>
     client-secret: <SECRET>
